@@ -30,7 +30,18 @@ try:
         card_data = json.loads(response.read().decode("utf-8"))
 
     # Display the returned JSON data.
-    print(json.dumps(card_data, indent=2))
+    # Extract and display selected card information.
+    print("\n--- Card Information ---")
+    print(f"Name: {card_data.get('name', 'Unknown')}")
+    print(f"Mana Cost: {card_data.get('mana_cost', 'None')}")
+    print(f"Type: {card_data.get('type_line', 'Unknown')}")
+    print(f"Rules Text: {card_data.get('oracle_text') or 'No rules text'}")
+
+    colors = card_data.get("colors", [])
+    print(f"Colors: {', '.join(colors) if colors else 'Colorless'}")
+
+    print(f"Set: {card_data.get('set_name', 'Unknown')}")
+    print(f"Rarity: {card_data.get('rarity', 'Unknown').title()}")
 
 except HTTPError as error:
     print(f"HTTP error: {error.code} - {error.reason}")
