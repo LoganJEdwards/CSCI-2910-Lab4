@@ -7,8 +7,12 @@ from urllib.request import Request, urlopen
 # Scryfall API endpoint for exact card-name lookups.
 BASE_URL = "https://api.scryfall.com/cards/named"
 
-# Card we want to retrieve for our first test.
-card_name = "Sol Ring"
+# Ask the user which card they want to find.
+card_name = input("Enter a Magic: The Gathering card name: ").strip()
+
+if not card_name:
+    print("Error: Card name cannot be empty.")
+    raise SystemExit(1)
 
 # Encode the card name so it can safely be included in the URL.
 params = urlencode({"exact": card_name})
