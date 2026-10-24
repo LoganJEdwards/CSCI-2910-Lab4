@@ -55,6 +55,9 @@ def search_card(card_name):
     except TimeoutError:
         print("The request timed out.")
 
+    except json.JSONDecodeError:
+        print("Error: Scryfall returned an invalid JSON response.")
+
 # Repeat searches until the user chooses to exit.
 while True:
     # Ask the user which card they want to find.
