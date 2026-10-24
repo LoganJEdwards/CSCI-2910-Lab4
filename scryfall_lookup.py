@@ -29,6 +29,11 @@ def search_card(card_name):
         # Send the request and read the response.
         with urlopen(request, timeout=15) as response:
             card_data = json.loads(response.read().decode("utf-8"))
+        
+        # Verify the response contains a JSON object.
+        if not isinstance(card_data, dict):
+            print("Error: Scryfall returned an unexpected response format.")
+            return
 
         # Extract and display selected card information.
         print("\n--- Card Information ---")
