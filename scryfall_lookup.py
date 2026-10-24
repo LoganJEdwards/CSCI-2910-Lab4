@@ -65,8 +65,16 @@ while True:
     else:
         search_card(card_name)
 
-    # Ask whether the user wants to search again.
-    repeat = input("\nWould you like to search for another card? (y/n): ")
-    if repeat.strip().lower() not in ("y", "yes"):
-        print("Exiting Scryfall Card Lookup.")
-        break
+        # Ask whether the user wants to search again.
+    while True:
+        repeat = input(
+            "\nWould you like to search for another card? (y/n): "
+        ).strip().lower()
+
+        if repeat in ("y", "yes"):
+            break
+        elif repeat in ("n", "no"):
+            print("Exiting Scryfall Card Lookup.")
+            raise SystemExit(0)
+        else:
+            print("Please enter 'y' or 'n'.")
